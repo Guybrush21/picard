@@ -1,5 +1,5 @@
 # picard
-Ansible playbook for kiratech
+Ansible playbook for playtesting.
 
 ## Playbook
 
@@ -22,8 +22,8 @@ Versioning del Codice:
 1. [x] Versionare il codice su un repository pubblico su Github.com, in modo che vi sia una chiara descrizione del lavoro svolto nella History del repository; 
 
 Continuous Integration:
-1. [ ] Configurare una pipeline di Continuous Integration su un tool a scelta (consiglio: Travis, per la semplice integrazione con GitHub, Ansible Docker);
-2. [ ] La pipeline deve:
+1. Configurare una pipeline di Continuous Integration su un tool a scelta (consiglio: Travis, per la semplice integrazione con GitHub, Ansible Docker);
+2. La pipeline deve:
     1. [ ] Eseguire il linting del codice e fallire in caso di errori, che vanno
     opportunamente corretti
     2.[ ] _Opzionalmente:_ Eseguire il test realizzato al punto 6 in automatico ad ogni push di codicesul repository
