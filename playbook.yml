@@ -1,0 +1,6 @@
+---
+- name: Picard Playbook
+  hosts: all
+  tasks:
+    - name: First Contact
+      command: "touch /vagrant/picard_was_here"
