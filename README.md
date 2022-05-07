@@ -4,6 +4,8 @@ Ansible playbook for playtesting.
 
 ## Get started
 
+You need a valid control node capable of running Ansible and Vagrant. Check [control node prerequisites](./docs/CONTROL-NODE-PREREQUISITES.md)
+
 Everything should be provisioned with a simple:
 
 ```
