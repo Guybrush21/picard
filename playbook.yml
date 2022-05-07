@@ -2,5 +2,38 @@
 - name: Picard Playbook
   hosts: all
   tasks:
-    - name: First Contact
-      command: "touch /vagrant/picard_was_here"
+    - name: "Create /docker directory if it does not exist"
+      become_method: sudo
+      become: true
+      ansible.builtin.file:
+        path: /docker
+        state: directory
+        mode: "0755"
+
+    - name: "Add new partition /dev/sda2"
+      become_method: sudo
+      become: true
+      parted:
+        device: "/dev/sda"
+        number: "2"
+        part_type: primary
+        state: present
+        resize: true
+        part_start: "-50GB"
+
+    - name: Create a ext4 filesystem on /dev/sdb2
+      become_method: sudo
+      become: true
+      community.general.filesystem:
+        fstype: ext4
+        dev: /dev/sda2
+
+    - name: Mount and bind sdb2 on /docker
+      become_method: sudo
+      become: true
+      ansible.posix.mount:
+        path: /docker
+        src: /dev/sda2
+        opts: defaults,nofail
+        state: mounted
+        fstype: ext4

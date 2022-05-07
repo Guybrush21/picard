@@ -9,8 +9,11 @@ You need a valid control node capable of running Ansible and Vagrant. Check [con
 Everything should be provisioned with a simple:
 
 ```
+export VAGRANT_EXPERIMENTAL="disks"
 vagrant up
 ```
+
+VAGRANT_EXPERIMENTAL is needed to create a bigger inital disk (80GB instead of 40GB) to complete ex. 2.
 
 For subsequent playbook edits use ansible directly with the inventory parameter.
 
