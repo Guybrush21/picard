@@ -17,9 +17,10 @@
         device: "/dev/sda"
         number: "2"
         part_type: primary
+        fs_type: xfs
         state: present
         resize: true
-        part_start: "-50GB"
+        part_start: "-40GB"
 
     - name: Create a ext4 filesystem on /dev/sdb2
       become_method: sudo

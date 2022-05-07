@@ -26,7 +26,7 @@ ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inve
 Using an **ansible playbook**:
 
 1. [x] Provisioning of two CentOS VM, cloud or locally.
-2. [ ] Setting VM: Ensure partition used by Docker is at least 40GB.
+2. [x] Setting VM: Ensure partition used by Docker is at least 40GB.
 3. [ ] Install Docker on the VMs
 4. Setting up Docker:
    1. [ ] Securely expose Docker Daemon REST API
