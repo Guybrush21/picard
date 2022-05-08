@@ -32,3 +32,7 @@
         opts: defaults,nofail
         state: mounted
         fstype: ext4
+
+    - name: Install docker on hosts
+      include_role:
+        name: docker

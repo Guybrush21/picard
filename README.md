@@ -27,7 +27,7 @@ Using an **ansible playbook**:
 
 1. [x] Provisioning of two CentOS VM, cloud or locally.
 2. [x] Setting VM: Ensure partition used by Docker is at least 40GB.
-3. [ ] Install Docker on the VMs
+3. [x] Install Docker on the VMs
 4. Setting up Docker:
    1. [ ] Securely expose Docker Daemon REST API
    2. [ ] Ensure Docker Daemon is configured as a service that starts on boot.
