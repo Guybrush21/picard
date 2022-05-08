@@ -33,3 +33,9 @@
       - containerd.io
       - docker-compose-plugin
     state: present
+
+- name: Ensure docker service is started and enabled
+  ansible.builtin.systemd:
+    name: docker
+    enabled: yes
+    state: started

@@ -30,7 +30,7 @@ Using an **ansible playbook**:
 3. [x] Install Docker on the VMs
 4. Setting up Docker:
    1. [ ] Securely expose Docker Daemon REST API
-   2. [ ] Ensure Docker Daemon is configured as a service that starts on boot.
+   2. [x] Ensure Docker Daemon is configured as a service that starts on boot.
 5. [ ] Configure a Docker Swarm on the two VMs, securely accessible. Ensure you can deploy services on the swarm.
 6. [ ] _Optionally:_ Test one of the task above using Molecule.
 
