@@ -1,5 +1,5 @@
 {
-  "hosts": ["unix:///var/run/docker.sock", "tcp://127.0.0.1:2375"],
+  "hosts": ["unix:///var/run/docker.sock", "tcp://0.0.0.0:2375"],
   "data-root": "/docker",
   "storage-driver": "overlay2"
 }
