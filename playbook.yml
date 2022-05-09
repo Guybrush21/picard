@@ -3,6 +3,10 @@
   hosts: all
   become: true
   become_method: sudo
+
+  roles:
+    - common
+
   tasks:
     - name: "Create /docker directory if it does not exist"
       ansible.builtin.file:
