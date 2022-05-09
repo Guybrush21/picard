@@ -39,3 +39,33 @@
     name: docker
     enabled: yes
     state: started
+
+- name: Install docker python module
+  pip:
+    name: docker
+
+- name: Create docker.service.d directory
+  file:
+    path: /etc/systemd/system/docker.service.d/
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Copy docker.service drop-in
+  template:
+    src: docker.service
+    dest: /etc/systemd/system/docker.service.d/override.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: Reload Docker
+
+- name: Copy daemon.json drop-in
+  template:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0644
+  notify: Reload Docker
