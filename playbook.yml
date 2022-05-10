@@ -3,40 +3,24 @@
   hosts: all
   become: true
   become_method: sudo
+  vars:
+    # customization for atosatto.docker-swarm role
+    docker_daemon_config:
+      hosts: ["unix:///var/run/docker.sock", "tcp://0.0.0.0:2375"]
+      # using the ext4 40GB partition we created before
+      data-root: "/docker"
+      storage-driver: "overlay2"
+    # override is needed to disable standard dockerd parameters
+    docker_service_override: |
+      [Service]
+      ExecStart=
+      ExecStart=/usr/bin/dockerd
+    # vagrant/vbox is providing 2 ip address with 2 different interfaces, eth1
+    # is the one used for the internal network.
+    # Both interface and ip selection could be improved...
+    docker_swarm_interface: "eth1"
+    docker_swarm_addr: 192.168.56.210
 
   roles:
-    - common
-
-  tasks:
-    - name: "Create /docker directory if it does not exist"
-      ansible.builtin.file:
-        path: /docker
-        state: directory
-        mode: "0755"
-
-    - name: "Add new partition /dev/sda2"
-      parted:
-        device: "/dev/sda"
-        number: "2"
-        part_type: primary
-        fs_type: xfs
-        state: present
-        resize: true
-        part_start: "-40GB"
-
-    - name: Create a ext4 filesystem on /dev/sdb2
-      community.general.filesystem:
-        fstype: ext4
-        dev: /dev/sda2
-
-    - name: Mount and bind sdb2 on /docker
-      ansible.posix.mount:
-        path: /docker
-        src: /dev/sda2
-        opts: defaults,nofail
-        state: mounted
-        fstype: ext4
-
-    - name: Install docker on hosts
-      include_role:
-        name: docker
+    - setup
+    - { role: atosatto.docker-swarm }

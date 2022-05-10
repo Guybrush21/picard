@@ -1,0 +1,17 @@
+---
+- name: Setting up Swarm
+  block:
+    - name: Initiating the swarm with default parameters
+      # https://docs.ansible.com/ansible/latest/modules/docker_swarm_module.html
+      community.docker.docker_swarm:
+        state: present
+        advertise_addr: 192.168.56.210
+      register: init_swarm
+
+    - name: "set fact: join token worker"
+      set_fact:
+        join_token_worker: "{{ init_swarm.swarm_facts.JoinTokens.Worker }}"
+
+    - name: "set fact: join token manager"
+      set_fact:
+        join_token_manager: "{{ init_swarm.swarm_facts.JoinTokens.Manager }}"

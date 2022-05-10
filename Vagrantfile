@@ -18,7 +18,12 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "ansible" do |ansible|
     ansible.verbose = "v"
+    ansible.limit = "all"
     ansible.playbook = "playbook.yml"    
-    ansible.limit = 'all'
+    ansible.groups = {
+      "docker_engine" => ["riker", "worf"],
+      "docker_swarm_manager" => ["riker"],
+      "docker_swarm_worker" => ["worf"]
+    }
   end
 end

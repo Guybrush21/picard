@@ -13,11 +13,22 @@ $ pacman -Syu python python-pip
 
 ## Ansible and paramiko
 
-paramiko seems to be a standard requirement for many modules and plugin
+paramiko seems to be a standard requirement for many modules and plugin.
+jmespath is required by the [docker-swarm role](https://galaxy.ansible.com/atosatto/docker-swarm).
 
 ```
 $ pip install ansible
 $ pip install paramiko
+$ pip install jmespath
+```
+
+## Ansible galaxy
+
+Before running ansible we need to install
+the roles dependencies from ansible galaxy
+
+```
+$ ansible-galaxy install -r requirements.yml
 ```
 
 ## Virtual machines capabilities
