@@ -38,3 +38,18 @@ Allow Arch machine to run virtual machines via VirtualBox and Vagrant as provisi
 ```
 $ pacman -S vagrant virtualbox virtualbox-host-modules-arch
 ```
+
+## Linting and CI
+
+There is a Travis CI which test linting rules defined in yamlint.
+To automaticlly fix those you can use [yamlfixer](https://github.com/opt-nc/yamlfixer).
+
+```
+$ pip install yamllint yamlfixer-opt-nc
+```
+
+and then
+
+```
+$ yamlfixer -c .yamlint -r -1 .
+```

@@ -1,3 +1,4 @@
+---
 - name: "Add new partition /dev/sda2"
   parted:
     device: "/dev/sda"
