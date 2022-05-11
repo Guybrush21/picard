@@ -2,6 +2,10 @@
 
 Ansible playbook for playtesting.
 
+## Status
+
+[![Build Status](https://app.travis-ci.com/Guybrush21/picard.svg?branch=main)](https://app.travis-ci.com/Guybrush21/picard)
+
 ## Get started
 
 You need a valid control node capable of running Ansible and Vagrant. Check [control node prerequisites](./docs/CONTROL-NODE-PREREQUISITES.md)
