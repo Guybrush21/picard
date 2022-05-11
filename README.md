@@ -46,9 +46,9 @@ Code Versioning:
 
 Continuous Integration:
 
-1. [ ] Configure a Continuous Integration pipeline on a tool of your choice (tip: Travis, for simple integration with GitHub, Ansible Docker)
+1. [x] Configure a Continuous Integration pipeline on a tool of your choice (tip: Travis, for simple integration with GitHub, Ansible Docker)
 2. Pipeline should:
-   1. [ ] Linting the code and failing in case of errors, which must be suitably corrected.
+   1. [x] Linting the code and failing in case of errors, which must be suitably corrected.
    2. [ ] _Optionally:_ Execute the test carried out in point 6 automatically at each code push on the repository
 
 References:
