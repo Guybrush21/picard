@@ -35,7 +35,7 @@ Using an **ansible playbook**:
 4. Setting up Docker:
    1. [ ] Securely expose Docker Daemon REST API
    2. [x] Ensure Docker Daemon is configured as a service that starts on boot.
-5. [ ] Configure a Docker Swarm on the two VMs, securely accessible. Ensure you can deploy services on the swarm.
+5. [x] Configure a Docker Swarm on the two VMs, securely accessible. Ensure you can deploy services on the swarm.
 6. [ ] _Optionally:_ Test one of the task above using Molecule.
 
 Describe each activity with appropriate Ansible roles and related tasks. The reuse of Ansible roles and playbooks made available in the open-source community is highly recommended (some of which are already linked in the text as an example and below for useful references). In case of code reuse it is important to motivate the role selection criteria, to know its features and contents, and to be able to describe any customizations carried out for the purpose of carrying out the above activities.
