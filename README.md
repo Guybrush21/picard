@@ -22,7 +22,7 @@ VAGRANT_EXPERIMENTAL is needed to create a bigger inital disk (80GB instead of 4
 For subsequent playbook edits use ansible directly with the inventory parameter.
 
 ```
-ansible-playbook -i .vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory playbook.yml
+ansible-playbook playbook.yml -i host.ini
 ```
 
 ## Ansible exercise

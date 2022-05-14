@@ -23,4 +23,4 @@
 
   roles:
     - setup
-    - { role: atosatto.docker-swarm }
+    - atosatto.docker-swarm
