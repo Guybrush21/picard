@@ -1,0 +1,14 @@
+- name: fetch CA on controller
+  ansible.builtin.fetch:
+    src: "{{ca_crt.filename}}"
+    dest: ./data
+
+- name: fetch PEM on controller
+  ansible.builtin.fetch:
+    src: "{{pk_host.filename}}"
+    dest: ./data
+
+- name: fetch CRT on controller
+  ansible.builtin.fetch:
+    src: "{{host_crt.filename}}"
+    dest: ./data

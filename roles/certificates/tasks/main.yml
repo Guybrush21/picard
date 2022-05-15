@@ -1,0 +1,62 @@
+---
+## reference for ansible openssl https://milliams.com/posts/2020/ansible-certificate-authority/
+
+- name: install python
+  include_tasks: setup.yml
+
+- name: ensure cryptography exists
+  pip:
+    state: present
+    name: cryptography
+
+- name: ensure cert-path exist
+  ansible.builtin.file:
+    path: "{{ cert_path }}"
+    state: directory
+
+- name: create CA key
+  openssl_privatekey:
+    path: "{{cert_path}}/CA_key.pem"
+  register: ca_key
+
+- name: create the CA CSR
+  openssl_csr:
+    path: "{{cert_path}}/CA.csr"
+    privatekey_path: "{{ ca_key.filename }}"
+    common_name: "{{ ansible_host }}"
+  register: ca_csr
+
+- name: sign the CA CSR
+  openssl_certificate:
+    path: "{{cert_path}}/{{ca_name}}"
+    csr_path: "{{ ca_csr.filename }}"
+    privatekey_path: "{{ ca_key.filename }}"
+    provider: selfsigned
+  register: ca_crt
+
+- name: create host CSR signing key
+  openssl_privatekey:
+    path: "{{cert_path}}/{{privatekey_name}}"
+    mode: 0444
+  register: pk_host
+
+- name: create the CSR for host
+  openssl_csr:
+    path: "{{cert_path}}/host.csr"
+    privatekey_path: "{{ pk_host.filename }}"
+    common_name: "{{ ansible_host }}"
+    subject_alt_name: "DNS:{{ansible_host}}"
+  register: csr_host
+
+- name: sign the CSR for host
+  openssl_certificate:
+    path: "{{cert_path}}/{{certificate_name}}"
+    csr_path: "{{ csr_host.filename }}"
+    provider: ownca
+    ownca_path: "{{ ca_crt.filename }}"
+    ownca_privatekey_path: "{{ ca_key.filename }}"
+  register: host_crt
+
+- name: copy certificates to controller
+  include_tasks: copy_to_controller.yml
+  when: copytocontroller

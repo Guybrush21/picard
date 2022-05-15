@@ -1,2 +1,3 @@
 ---
-- src: atosatto.docker-swarm
+- src: guybrush21.ansible_dockerswarm
+  version: v2.3.2

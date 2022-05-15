@@ -1,15 +1,19 @@
 ---
 - name: Picard Playbook
   hosts: all
-  become: true
-  become_method: sudo
   vars:
+    cert_path: /docker/certs
     # customization for atosatto.docker-swarm role
     docker_daemon_config:
-      hosts: ["unix:///var/run/docker.sock", "tcp://0.0.0.0:2375"]
+      hosts: ["unix:///var/run/docker.sock", "tcp://0.0.0.0:2376"]
       # using the ext4 40GB partition we created before
       data-root: "/docker"
       storage-driver: "overlay2"
+      tlsverify: true
+      tlscacert: /docker/certs/CA.crt
+      tlscert: /docker/certs/host.crt
+      tlskey: /docker/certs/host.pem
+
     # override is needed to disable standard dockerd parameters
     docker_service_override: |
       [Service]
@@ -20,7 +24,10 @@
     # Both interface and ip selection could be improved...
     docker_swarm_interface: "eth1"
     docker_swarm_addr: 192.168.56.210
+    copytocontroller: true
+    skip_docker_compose: True
 
   roles:
     - setup
-    - atosatto.docker-swarm
+    - certificates
+    - guybrush21.ansible_dockerswarm
