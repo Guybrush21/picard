@@ -31,3 +31,25 @@
     - setup
     - certificates
     - guybrush21.ansible_dockerswarm
+
+  tasks:
+    - name: deploy stack
+      block:
+        - name: install jsondiff and pyyaml
+          pip:
+            name:
+              - jsondiff==2.0.0
+              - pyyaml==6.0
+
+        - name: copying ussenterprise image
+          copy:
+            src: "services"
+            dest: "/docker"
+
+        - name: eeploying ussenterprise image
+          docker_stack:
+            state: present
+            name: "ussenterprise"
+            compose:
+              - "/docker/services/caddy/docker-compose.yml"
+      when: "'docker_swarm_manager' in group_names"

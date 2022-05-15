@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  caddy:
+    image: caddy:2.5.1
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/usr/share/caddy

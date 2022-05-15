@@ -10,7 +10,9 @@ Ansible playbook for playtesting.
 
 You need a valid control node capable of running Ansible and Vagrant. Check [control node prerequisites](./docs/CONTROL-NODE-PREREQUISITES.md)
 
-Everything should be provisioned with a simple:
+### Vagrant
+
+We create the needed vagrant machines:
 
 ```
 export VAGRANT_EXPERIMENTAL="disks"
@@ -19,11 +21,19 @@ vagrant up
 
 VAGRANT_EXPERIMENTAL is needed to create a bigger inital disk (80GB instead of 40GB) to complete ex. 2.
 
-For subsequent playbook edits use ansible directly with the inventory parameter.
+Vagrant will provision the vms ensuring python3 is installed, this because centos7 is still defaulting to python2.
+
+### Ansible
+
+Play ansible directly with the inventory parameter.
 
 ```
 ansible-playbook playbook.yml -i host.ini
 ```
+
+### Final result
+
+Navigating to http://riker.uss will welcome you with a web page with the iconc USS Enterprise crew.
 
 ## Ansible exercise
 
