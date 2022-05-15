@@ -72,5 +72,5 @@ $ pip install yamllint yamlfixer-opt-nc
 and then
 
 ```
-$ yamlfixer -c .yamlint -r -1 .
+$ yamlfixer -c .yamllint -r -1 .
 ```

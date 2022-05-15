@@ -1,3 +1,4 @@
+---
 - name: fetch CA on controller
   ansible.builtin.fetch:
     src: "{{ca_crt.filename}}"
